@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
-import { db } from "./firebaseConfig";
-import {
+import { 
+  getFirestore,
   doc,
   onSnapshot,
   setDoc,
   getDoc,
   serverTimestamp
 } from "firebase/firestore";
+import { initFirebase } from "./firebaseConfig";
 
-export function useMatchAllRoom(roomId: string | string[] | undefined, playerName: string | string[] | undefined) {
+// Инициализируем Firebase при запуске хука
+initFirebase();
+const db = getFirestore();
+
+export function useMatchAllRoom(
+  roomId: string | string[] | undefined,
+  playerName: string | string[] | undefined
+) {
   const [players, setPlayers] = useState<string[]>([]);
   const [answers, setAnswers] = useState<any[]>([]);
 

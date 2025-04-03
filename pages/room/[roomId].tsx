@@ -9,17 +9,9 @@ const CATEGORIES = [
   { key: "foods", label: "🍕 Еда" }
 ];
 
-type InputsState = {
-  [key: string]: string[];
-};
-
-type SubmittedState = {
-  [key: string]: boolean;
-};
-
-type ScoresState = {
-  [key: string]: number;
-};
+type InputsState = { [key: string]: string[] };
+type SubmittedState = { [key: string]: boolean };
+type ScoresState = { [key: string]: number };
 
 export default function MatchAllGame() {
   const router = useRouter();
@@ -143,16 +135,11 @@ export default function MatchAllGame() {
       <div style={{ paddingTop: 30, textAlign: "center" }}>
         <h2>Игроки в комнате:</h2>
         <ul style={{ fontSize: 12, color: "gray" }}>
-          {players.map((p, i) => (
+          {players.map((p: string, i: number) => (
             <li key={i}>{p}</li>
           ))}
         </ul>
       </div>
     </div>
   );
-}
-export async function getServerSideProps() {
-  return {
-    props: {},
-  };
 }
